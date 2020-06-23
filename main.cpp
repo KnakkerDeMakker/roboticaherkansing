@@ -90,13 +90,9 @@ int camera()
 	if (src.empty())
 		return -1;
 
-	 //Convert to grayscale
-	//cv::Mat gray;
-	//cv::cvtColor(src, gray, cv::COLOR_BGR2GRAY);
-
-	// Use Canny instead of threshold to catch squares with gradient shading
+   // Use Canny instead of threshold to catch squares with gradient shading
 	cv::Mat bw;
-	cv::Canny(src, bw, 0, 50, 5);
+	cv::Canny(src, bw, 125, 255, 5);
 
 	// Find contours
 	std::vector<std::vector<cv::Point> > contours;
@@ -141,11 +137,11 @@ int camera()
 				setLabel(dst, "RECT", contours[i]);
 				model->vorm = 2;
 			}
-			else if (vtc == 5 && mincos >= -0.34 && maxcos <= -0.27) {
+			else if (vtc == 5) {
 				setLabel(dst, "PENTA", contours[i]);
 				model->vorm = 3;
 			}
-			else if (vtc == 6 && mincos >= -0.55 && maxcos <= -0.45) {
+			else if (vtc == 6) {
 				setLabel(dst, "HEXA", contours[i]);
 				model->vorm = 4;
 			}
@@ -206,4 +202,3 @@ Point2 converter(int x, int y) {
 
 	return out;
 }
-
