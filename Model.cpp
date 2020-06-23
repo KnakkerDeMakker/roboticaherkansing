@@ -1,4 +1,6 @@
 #include "Model.h"
+#include "GL/glew.h"
+#include "GL/freeglut.h"
 
 Model::Model()
 	: XDriver(nullptr), YDriver(nullptr), pen(nullptr) {}
@@ -97,7 +99,6 @@ TaskSet Model::DrawTriangle(float radius, float time, Point2 pos) {
 	task.Dest = -1;
 	out.Z.push(task);
 
-
 	//Divide time over segments;
 	task.Time = time / TRIDEF;
 
@@ -130,6 +131,17 @@ TaskSet Model::DrawTriangle(float radius, float time, Point2 pos) {
 	out.Y.push(task);
 
 	return out;
+	/*glBegin(GL_TRIANGLES);
+
+	glColor3f(0.5, 0, 0);
+
+	glVertex2f(-0.5, -0.25);
+	glVertex2f(0.5, -0.25);
+	glVertex2f(0.0, 0.75);
+
+	glEnd();
+	glFlush();
+	return out;*/
 }
 
 TaskSet Model::DrawSquare(float radius, float time, Point2 pos) {
