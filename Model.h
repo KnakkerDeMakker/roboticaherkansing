@@ -1,3 +1,9 @@
+#pragma once
+#include "MotorDriver.h"
+#include "Pen.h"
+#include "Time.h"
+#include <vector>
+#include <queue>
 #include "Dynamic.h"
 #include "Drawable.h"
 #include <math.h>
